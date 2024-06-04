@@ -12,7 +12,7 @@ import javax.inject.Inject
 class ContactsRepositoryImp @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
-    private val newMapper: Mapper<ContactsItemDto, ContactsItemEntity>
+    private val contactsMapper: Mapper<ContactsItemDto, ContactsItemEntity>
 ) : ContactsRepository {
 
     override suspend fun getContacts(page: Int): Flow<PagingModel<List<ContactsItemEntity>>> {
@@ -21,7 +21,7 @@ class ContactsRepositoryImp @Inject constructor(
                 val data = remoteDataSource.getContacts()
                 emit(
                     PagingModel(
-                        data = newMapper.fromList(data.data),
+                        data = contactsMapper.fromList(data.data),
                         total = data.total,
                         currentPage = page
                     )
@@ -34,7 +34,7 @@ class ContactsRepositoryImp @Inject constructor(
                     val localData = localDataSource.getContacts()
                     emit(
                         PagingModel(
-                            data = newMapper.fromList(localData.data),
+                            data = contactsMapper.fromList(localData.data),
                             total = localData.total,
                             currentPage = page
                         )

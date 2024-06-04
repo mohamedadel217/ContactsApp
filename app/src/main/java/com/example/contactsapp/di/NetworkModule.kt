@@ -42,6 +42,6 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideNewService(retrofit: Retrofit): ApiService =
+    fun provideContactsService(retrofit: Retrofit): ApiService =
         retrofit.create(ApiService::class.java)
 }

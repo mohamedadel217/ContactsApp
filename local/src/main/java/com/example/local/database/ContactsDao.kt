@@ -7,7 +7,7 @@ import com.example.local.models.ContactsItemLocal
 interface ContactsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addContacts(news: ContactsItemLocal): Long
+    fun addContacts(contact: ContactsItemLocal): Long
 
     @Query("select * from contacts")
     fun getAllContacts(): List<ContactsItemLocal>

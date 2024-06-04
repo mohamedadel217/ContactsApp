@@ -31,23 +31,23 @@ class ContactsRepositoryImpTest {
     @MockK
     private lateinit var localDataSource: LocalDataSource
 
-    private val newMapper = ContactsDataDomainMapper()
+    private val contactsMapper = ContactsDataDomainMapper()
 
-    private lateinit var newRepository: ContactsRepository
+    private lateinit var contactsRepository: ContactsRepository
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true) // turn relaxUnitFun on for all mocks
         // Create RepositoryImp before every test
-        newRepository = ContactsRepositoryImp(
+        contactsRepository = ContactsRepositoryImp(
             remoteDataSource = remoteDataSource,
             localDataSource = localDataSource,
-            newMapper = newMapper
+            contactsMapper = contactsMapper
         )
     }
 
     @Test
-    fun `test get news remote success`() = runTest {
+    fun `test get contacts remote success`() = runTest {
 
         val pagingModel = TestDataGenerator.generateContacts()
 
@@ -55,14 +55,14 @@ class ContactsRepositoryImpTest {
         coEvery { remoteDataSource.getContacts() } returns pagingModel
 
         // When & Assertions
-        val flow = newRepository.getContacts(1)
+        val flow = contactsRepository.getContacts(1)
         flow.test {
             // Expect Offer Items
             val expected = expectItem()
             Truth.assertThat(expected)
                 .isEqualTo(
                     PagingModel(
-                        newMapper.fromList(pagingModel.data),
+                        contactsMapper.fromList(pagingModel.data),
                         total = 6,
                         currentPage = 1
                     )
@@ -84,14 +84,14 @@ class ContactsRepositoryImpTest {
         coEvery { localDataSource.getContacts() } returns pagingModel
 
         // When & Assertions
-        val flow = newRepository.getContacts(1)
+        val flow = contactsRepository.getContacts(1)
         flow.test {
             // Expect Offer Items
             val expected = expectItem()
             Truth.assertThat(expected)
                 .isEqualTo(
                     PagingModel(
-                        newMapper.fromList(pagingModel.data),
+                        contactsMapper.fromList(pagingModel.data),
                         total = 6,
                         currentPage = 1
                     )
@@ -113,7 +113,7 @@ class ContactsRepositoryImpTest {
         coEvery { localDataSource.getContacts() } throws Exception()
 
         // When & Assertions
-        val flow = newRepository.getContacts(1)
+        val flow = contactsRepository.getContacts(1)
         flow.test {
             // Expect Error
             throw expectError()

@@ -38,7 +38,7 @@ class RemoteDataSourceImpTest {
     }
 
     @Test
-    fun `test get news success`() = runTest {
+    fun `test get contacts success`() = runTest {
 
         val contactsNetwork = TestDataGenerator.generateContacts()
 
@@ -58,7 +58,7 @@ class RemoteDataSourceImpTest {
     }
 
     @Test(expected = Exception::class)
-    fun `test get news fail`() = runTest {
+    fun `test get contacts fail`() = runTest {
 
         // Given
         coEvery { apiService.getContacts() } throws Exception()

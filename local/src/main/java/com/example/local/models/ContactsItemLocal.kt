@@ -18,5 +18,6 @@ data class ContactsItemLocal(
     val login: LoginLocal? = null,
     val cell: String? = null,
     val email: String? = null,
-    val picture: PictureLocal? = null
+    val picture: PictureLocal? = null,
+    val isFavorite: Boolean = false
 )

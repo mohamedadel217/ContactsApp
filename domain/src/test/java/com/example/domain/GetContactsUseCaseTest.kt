@@ -24,7 +24,7 @@ import kotlin.time.ExperimentalTime
 @ExperimentalTime
 @ExperimentalCoroutinesApi
 @SmallTest
-class GetNewsUseCaseTest {
+class GetContactsUseCaseTest {
 
     @MockK
     private lateinit var contactsRepository: ContactsRepository
@@ -41,20 +41,20 @@ class GetNewsUseCaseTest {
     }
 
     @Test
-    fun `test get news success`() = runTest {
+    fun `test get contacts success`() = runTest {
 
-        val newsItems = TestDataGenerator.generateContacts()
-        val newFlow = flowOf(newsItems)
+        val contacts = TestDataGenerator.generateContacts()
+        val contactsFlow = flowOf(contacts)
 
         // Given
-        coEvery { contactsRepository.getContacts(1) } returns newFlow
+        coEvery { contactsRepository.getContacts(1) } returns contactsFlow
 
         // When & Assertions
         val result = getContactsUseCase.execute(params = 1)
         result.test {
             // Expect Offer Items
             val expected = expectItem()
-            Truth.assertThat(expected).isEqualTo(newsItems)
+            Truth.assertThat(expected).isEqualTo(contacts)
             expectComplete()
         }
 
@@ -64,14 +64,14 @@ class GetNewsUseCaseTest {
     }
 
     @Test(expected = Exception::class)
-    fun `test get news fail`() = runTest {
+    fun `test get contacts fail`() = runTest {
 
-        val newsFlow = flow<PagingModel<List<ContactsItemEntity>>> {
+        val contactsFlow = flow<PagingModel<List<ContactsItemEntity>>> {
             throw Exception()
         }
 
         // Given
-        coEvery { contactsRepository.getContacts(1) } returns newsFlow
+        coEvery { contactsRepository.getContacts(1) } returns contactsFlow
 
         // When & Assertions
         val result = getContactsUseCase.execute(1)

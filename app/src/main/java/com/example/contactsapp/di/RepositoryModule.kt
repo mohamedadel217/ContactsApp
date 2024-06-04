@@ -24,6 +24,6 @@ abstract class RepositoryModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun provideNewsRepository(repository: ContactsRepositoryImp): ContactsRepository
+    abstract fun provideContactsRepository(repository: ContactsRepositoryImp): ContactsRepository
 
 }
