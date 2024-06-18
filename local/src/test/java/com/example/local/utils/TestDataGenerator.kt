@@ -1,8 +1,8 @@
 package com.example.local.utils
 
 import com.example.local.models.ContactsItemLocal
-import com.example.local.models.ContactsLocal
 import com.example.local.models.DobLocal
+import com.example.local.models.IdLocal
 import com.example.local.models.LocationLocal
 import com.example.local.models.NameLocal
 import com.example.local.models.PictureLocal
@@ -25,7 +25,8 @@ class TestDataGenerator {
                         ),
                         location = LocationLocal(country = "NL"),
                         picture = PictureLocal(thumbnail = "", medium = "", large = ""),
-                        tableId = 0
+                        tableId = 0.toString(),
+                        id = IdLocal()
                     )
                 )
                 add(
@@ -41,7 +42,8 @@ class TestDataGenerator {
                         ),
                         location = LocationLocal(country = "PT"),
                         picture = PictureLocal(thumbnail = "", medium = "", large = ""),
-                        tableId = 1
+                        tableId = 1.toString(),
+                        id = IdLocal()
                     )
                 )
                 add(
@@ -57,7 +59,8 @@ class TestDataGenerator {
                         ),
                         location = LocationLocal(country = "ES"),
                         picture = PictureLocal(thumbnail = "", medium = "", large = ""),
-                        tableId = 2
+                        tableId = 2.toString(),
+                        id = IdLocal()
                     )
                 )
                 add(
@@ -73,7 +76,8 @@ class TestDataGenerator {
                         ),
                         location = LocationLocal(country = "GR"),
                         picture = PictureLocal(thumbnail = "", medium = "", large = ""),
-                        tableId = 3
+                        tableId = 3.toString(),
+                        id = IdLocal()
                     )
                 )
                 add(
@@ -89,7 +93,8 @@ class TestDataGenerator {
                         ),
                         location = LocationLocal(country = "FR"),
                         picture = PictureLocal(thumbnail = "", medium = "", large = ""),
-                        tableId = 4
+                        tableId = 4.toString(),
+                        id = IdLocal()
                     )
                 )
                 add(
@@ -105,7 +110,8 @@ class TestDataGenerator {
                         ),
                         location = LocationLocal(country = "PL"),
                         picture = PictureLocal(thumbnail = "", medium = "", large = ""),
-                        tableId = 5
+                        tableId = 5.toString(),
+                        id = IdLocal()
                     )
                 )
             }

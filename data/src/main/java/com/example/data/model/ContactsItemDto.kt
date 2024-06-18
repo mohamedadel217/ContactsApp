@@ -12,5 +12,6 @@ data class ContactsItemDto(
     val login: LoginDto? = null,
     val cell: String? = null,
     val email: String? = null,
-    val picture: PictureDto? = null
+    val picture: PictureDto? = null,
+    val isFavorite: Boolean? = false
 )

@@ -4,7 +4,7 @@ data class LocationEntity(
     val country: String? = null,
     val city: String? = null,
     val street: StreetEntity? = null,
-    val postcode: Int? = null,
+    val postcode: String? = null,
     val state: String? = null,
     val timezone: TimezoneEntity? = null,
     val coordinates: CoordinatesEntity? = null,

@@ -22,7 +22,7 @@ object NetworkModule {
     private const val CONNECTION_TIME_OUT = 2L
     private const val READ_TIME_OUT = 2L
     private const val WRITE_TIME_OUT = 2L
-    private const val BASE_URL = "https://randomuser.me/api/?results=100"
+    private const val BASE_URL = "https://randomuser.me"
 
     @Singleton
     @Provides

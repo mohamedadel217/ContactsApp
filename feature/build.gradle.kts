@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -24,6 +25,12 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get().toString()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -49,6 +56,8 @@ dependencies {
     testImplementation(libs.truth)
     testImplementation(libs.testRunner)
     testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+
 }
 kapt {
     correctErrorTypes = true

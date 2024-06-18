@@ -5,12 +5,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "contacts")
 data class ContactsItemLocal(
-    @PrimaryKey(autoGenerate = true)
-    val tableId: Int,
+    @PrimaryKey
+    val tableId: String,
     val nat: String? = null,
     val gender: String? = null,
     val phone: String? = null,
-    val id: IdLocal? = null,
+    val id: IdLocal,
     val dob: DobLocal? = null,
     val name: NameLocal? = null,
     val registered: RegisteredLocal? = null,

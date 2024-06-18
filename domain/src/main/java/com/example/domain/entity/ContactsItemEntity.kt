@@ -13,5 +13,5 @@ data class ContactsItemEntity(
     val cell: String? = null,
     val email: String? = null,
     val picture: PictureEntity? = null,
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean? = false
 )

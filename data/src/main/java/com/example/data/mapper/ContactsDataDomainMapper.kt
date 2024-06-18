@@ -2,6 +2,16 @@ package com.example.data.mapper
 
 import com.example.common.Mapper
 import com.example.data.model.ContactsItemDto
+import com.example.data.model.CoordinatesDto
+import com.example.data.model.DobDto
+import com.example.data.model.IdDto
+import com.example.data.model.LocationDto
+import com.example.data.model.LoginDto
+import com.example.data.model.NameDto
+import com.example.data.model.PictureDto
+import com.example.data.model.RegisteredDto
+import com.example.data.model.StreetDto
+import com.example.data.model.TimezoneDto
 import com.example.domain.entity.ContactsItemEntity
 import com.example.domain.entity.CoordinatesEntity
 import com.example.domain.entity.DobEntity
@@ -50,7 +60,7 @@ class ContactsDataDomainMapper @Inject constructor() :
                 password = i?.login?.password,
                 salt = i?.login?.salt,
                 sha256 = i?.login?.sha256,
-                uuid = i?.login?.uuid,
+                uuid = i?.login?.uuid.orEmpty(),
                 username = i?.login?.username,
                 md5 = i?.login?.md5
             ),
@@ -61,10 +71,54 @@ class ContactsDataDomainMapper @Inject constructor() :
                 large = i?.picture?.large,
                 medium = i?.picture?.medium
             ),
+            isFavorite = i?.isFavorite
         )
     }
 
     override fun to(o: ContactsItemEntity?): ContactsItemDto {
-        return ContactsItemDto()
+        return ContactsItemDto(
+            nat = o?.nat,
+            gender = o?.gender,
+            phone = o?.phone,
+            dob = DobDto(date = o?.dob?.date, age = o?.dob?.age),
+            name = NameDto(first = o?.name?.first, last = o?.name?.last, title = o?.name?.title),
+            registered = RegisteredDto(date = o?.registered?.date, age = o?.registered?.age),
+            location = LocationDto(
+                country = o?.location?.country,
+                city = o?.location?.city,
+                state = o?.location?.state,
+                postcode = o?.location?.postcode,
+                street = StreetDto(
+                    number = o?.location?.street?.number,
+                    name = o?.location?.street?.name
+                ),
+                timezone = TimezoneDto(
+                    offset = o?.location?.timezone?.offset,
+                    description = o?.location?.timezone?.description
+                ),
+                coordinates = CoordinatesDto(
+                    latitude = o?.location?.coordinates?.latitude,
+                    longitude = o?.location?.coordinates?.longitude
+                )
+            ),
+            id = IdDto(name = o?.id?.name, value = o?.id?.value),
+            login = LoginDto(
+                sha1 = o?.login?.sha1,
+                password = o?.login?.password,
+                salt = o?.login?.salt,
+                sha256 = o?.login?.sha256,
+                uuid = o?.login?.uuid,
+                username = o?.login?.username,
+                md5 = o?.login?.md5
+            ),
+            cell = o?.cell,
+            email = o?.email,
+            picture = PictureDto(
+                thumbnail = o?.picture?.thumbnail,
+                large = o?.picture?.large,
+                medium = o?.picture?.medium
+            ),
+            isFavorite = o?.isFavorite
+        )
     }
 }

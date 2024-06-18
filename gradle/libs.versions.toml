@@ -6,28 +6,13 @@ compileSdk = "34"
 minSdk = "29"
 targetSdk = "33"
 
-material = "1.9.0"
-appcompat = "1.2.0"
-ktx = "1.10.1"
-recyclerView = "1.3.0"
-constraintlayout = "2.1.4"
-lifecycle = "2.4.0"
-fragment_ktx = "1.6.0"
+
 hilt = "2.48"
 retrofit = "2.9.0"
-okhttp = "4.9.0"
 okhttpLoggingInterceptor = "4.12.0"
-kotlinxSerialization = "1.0.1"
-kotlinxConverter = "0.8.0"
+
 coroutines = "1.7.1"
-leakCanary = "2.9.1"
-multidex = "2.0.1"
-androidUtil = "1.29.0"
-navComponent = "2.6.0"
-materialDialog = "3.3.0"
-javaxInject = "1"
-room = "2.2.6"
-biometric = "1.1.0"
+composeCompiler = "1.5.2"
 activityCompose = "1.8.2"
 composeViewModel = "2.7.0"
 composeBom = "2023.05.01"
@@ -46,39 +31,17 @@ truth = "1.1.2"
 junit = "4.13.2"
 testRunner = "1.5.2"
 mockk = "1.12.0"
-mockkAndroid = "1.11.0"
 turbine = "0.5.2"
-fragmentTesting = "1.3.2"
 junitKtx = "1.1.5"
 
 [libraries]
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
-recyclerView = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerView" }
-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-lifecycleLivedataKtx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
-lifecycleViewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-lifecycleRuntime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
-fragmentKtx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment_ktx" }
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hiltCompiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofitConverterMoshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 okhttpLoggingInterceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttpLoggingInterceptor" }
-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
-kotlinxSerialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
-kotlinxConverter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinxConverter" }
 coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutinesAndroid = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
-leakCanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakCanary" }
-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
-androidUtil = { group = "androidx.legacy", name = "legacy-support-core-utils", version.ref = "androidUtil" }
-navComponent = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navComponent" }
-materialDialog = { group = "com.afollestad.material-dialogs", name = "core", version.ref = "materialDialog" }
-javaxInject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
-room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
 activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 composeViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "composeViewModel" }
 composeBom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
@@ -101,8 +64,6 @@ truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 testRunner = { group = "androidx.test", name = "runner", version.ref = "testRunner" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
-mockkAndroid = { group = "io.mockk", name = "mockk-android", version.ref = "mockkAndroid" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
-fragmentTesting = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragmentTesting" }
 junitKtx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }

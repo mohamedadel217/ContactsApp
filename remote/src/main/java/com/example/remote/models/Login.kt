@@ -17,7 +17,7 @@ data class Login(
     val sha256: String? = null,
 
     @Json(name = "uuid")
-    val uuid: String? = null,
+    val uuid: String,
 
     @Json(name = "username")
     val username: String? = null,

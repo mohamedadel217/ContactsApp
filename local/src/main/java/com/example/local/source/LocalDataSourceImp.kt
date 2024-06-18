@@ -22,4 +22,27 @@ class LocalDataSourceImp @Inject constructor(
         )
     }
 
+    override suspend fun saveContacts(data: List<ContactsItemDto>): List<Long> {
+        val localContacts = contactsLocalDataMapper.toList(data)
+        return contactsDao.addContacts(localContacts)
+    }
+
+    override suspend fun getFavoriteContacts(): PagingModel<List<ContactsItemDto>> {
+        val localFavoriteContacts =
+            contactsLocalDataMapper.fromList(contactsDao.getAllFavoriteContacts())
+        return PagingModel(
+            data = localFavoriteContacts,
+            total = localFavoriteContacts.size,
+            currentPage = 0
+        )
+    }
+
+    override suspend fun addFavoriteContacts(contact: ContactsItemDto): Int {
+        return contactsDao.addFavorite(contactsLocalDataMapper.to(contact))
+    }
+
+    override suspend fun clearContactsCashed(): Int {
+        return contactsDao.clearContactsCash()
+    }
+
 }

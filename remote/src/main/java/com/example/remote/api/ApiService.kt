@@ -4,7 +4,7 @@ import com.example.remote.models.ContactsResponse
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET
+    @GET("api/?results=100")
     suspend fun getContacts(): ContactsResponse
 
 }

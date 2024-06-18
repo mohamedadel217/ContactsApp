@@ -4,6 +4,8 @@ import com.example.common.Mapper
 import com.example.data.mapper.ContactsDataDomainMapper
 import com.example.data.model.ContactsItemDto
 import com.example.domain.entity.ContactsItemEntity
+import com.example.feature.mapper.ContactsDomainUiMapper
+import com.example.feature.models.ContactsItemUiModel
 import com.example.local.mapper.ContactsLocalDataMapper
 import com.example.local.models.ContactsItemLocal
 import com.example.remote.mapper.ContactsNetworkDataMapper
@@ -36,7 +38,7 @@ abstract class MapperModule {
     //endregion
 
     //region Presentation Mappers
-//    @Binds
-//    abstract fun bindsNewDomainUiMapper(mapper: NewDomainUiMapper): Mapper<NewEntity, NewUiModel>
+    @Binds
+    abstract fun bindsNewDomainUiMapper(mapper: ContactsDomainUiMapper): Mapper<ContactsItemEntity, ContactsItemUiModel>
     //endregion
 }

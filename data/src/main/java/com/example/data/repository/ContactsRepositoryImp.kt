@@ -18,11 +18,12 @@ class ContactsRepositoryImp @Inject constructor(
     override suspend fun getContacts(page: Int): Flow<PagingModel<List<ContactsItemEntity>>> {
         return flow {
             try {
-                val data = remoteDataSource.getContacts()
+                val contacts = remoteDataSource.getContacts()
+                localDataSource.saveContacts(data = contacts.data)
                 emit(
                     PagingModel(
-                        data = contactsMapper.fromList(data.data),
-                        total = data.total,
+                        data = contactsMapper.fromList(contacts.data),
+                        total = contacts.total,
                         currentPage = page
                     )
                 )
@@ -45,5 +46,27 @@ class ContactsRepositoryImp @Inject constructor(
                 }
             }
         }
+    }
+
+    override suspend fun getFavoriteContacts(page: Int): Flow<PagingModel<List<ContactsItemEntity>>> {
+        return flow {
+            try {
+                val favoriteContacts = localDataSource.getFavoriteContacts()
+                emit(
+                    PagingModel(
+                        data = contactsMapper.fromList(favoriteContacts.data),
+                        total = favoriteContacts.total,
+                        currentPage = page
+                    )
+                )
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+                throw ex
+            }
+        }
+    }
+
+    override suspend fun saveFavoriteContact(contact: ContactsItemEntity?): Int {
+        return localDataSource.addFavoriteContacts(contactsMapper.to(contact))
     }
 }

@@ -13,6 +13,16 @@ import com.example.data.model.RegisteredDto
 import com.example.data.model.StreetDto
 import com.example.data.model.TimezoneDto
 import com.example.remote.models.ContactsItem
+import com.example.remote.models.Coordinates
+import com.example.remote.models.Dob
+import com.example.remote.models.Id
+import com.example.remote.models.Location
+import com.example.remote.models.Login
+import com.example.remote.models.Name
+import com.example.remote.models.Picture
+import com.example.remote.models.Registered
+import com.example.remote.models.Street
+import com.example.remote.models.Timezone
 import javax.inject.Inject
 
 class ContactsNetworkDataMapper @Inject constructor() :
@@ -60,10 +70,53 @@ class ContactsNetworkDataMapper @Inject constructor() :
                 large = i?.picture?.large,
                 medium = i?.picture?.medium
             ),
+            isFavorite = false
         )
     }
 
     override fun to(o: ContactsItemDto?): ContactsItem {
-        return ContactsItem()
+        return ContactsItem(
+            nat = o?.nat,
+            gender = o?.gender,
+            phone = o?.phone,
+            dob = Dob(date = o?.dob?.date, age = o?.dob?.age),
+            name = Name(first = o?.name?.first.orEmpty(), last = o?.name?.last.orEmpty(), title = o?.name?.title.orEmpty()),
+            registered = Registered(date = o?.registered?.date, age = o?.registered?.age),
+            location = Location(
+                country = o?.location?.country.orEmpty(),
+                city = o?.location?.city,
+                state = o?.location?.state,
+                postcode = o?.location?.postcode,
+                street = Street(
+                    number = o?.location?.street?.number,
+                    name = o?.location?.street?.name
+                ),
+                timezone = Timezone(
+                    offset = o?.location?.timezone?.offset,
+                    description = o?.location?.timezone?.description
+                ),
+                coordinates = Coordinates(
+                    latitude = o?.location?.coordinates?.latitude,
+                    longitude = o?.location?.coordinates?.longitude
+                )
+            ),
+            id = Id(name = o?.id?.name, value = o?.id?.value),
+            login = Login(
+                sha1 = o?.login?.sha1,
+                password = o?.login?.password,
+                salt = o?.login?.salt,
+                sha256 = o?.login?.sha256,
+                uuid = o?.login?.uuid.orEmpty(),
+                username = o?.login?.username,
+                md5 = o?.login?.md5
+            ),
+            cell = o?.cell,
+            email = o?.email,
+            picture = Picture(
+                thumbnail = o?.picture?.thumbnail.orEmpty(),
+                large = o?.picture?.large.orEmpty(),
+                medium = o?.picture?.medium.orEmpty()
+            ),
+        )
     }
 }

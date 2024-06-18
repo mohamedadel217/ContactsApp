@@ -5,7 +5,7 @@ data class LocationDto(
     val city: String? = null,
     val street: StreetDto? = null,
     val timezone: TimezoneDto? = null,
-    val postcode: Int? = null,
+    val postcode: String? = null,
     val coordinates: CoordinatesDto? = null,
     val state: String? = null
 )

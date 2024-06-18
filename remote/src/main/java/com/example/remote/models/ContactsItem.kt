@@ -29,7 +29,7 @@ data class ContactsItem(
     val id: Id? = null,
 
     @Json(name = "login")
-    val login: Login? = null,
+    val login: Login,
 
     @Json(name = "cell")
     val cell: String? = null,

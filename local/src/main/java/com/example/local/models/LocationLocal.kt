@@ -5,7 +5,7 @@ data class LocationLocal(
     val city: String? = null,
     val street: StreetLocal? = null,
     val timezone: TimezoneLocal? = null,
-    val postcode: Int? = null,
+    val postcode: String? = null,
     val coordinates: CoordinatesLocal? = null,
     val state: String? = null
 )

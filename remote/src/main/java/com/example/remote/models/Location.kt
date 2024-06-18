@@ -17,7 +17,7 @@ data class Location(
     val timezone: Timezone? = null,
 
     @Json(name = "postcode")
-    val postcode: Int? = null,
+    val postcode: String? = null,
 
     @Json(name = "coordinates")
     val coordinates: Coordinates? = null,

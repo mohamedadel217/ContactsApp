@@ -50,8 +50,11 @@ class ContactsRepositoryImpTest {
     fun `test get contacts remote success`() = runTest {
 
         val pagingModel = TestDataGenerator.generateContacts()
+        val affectedIds = MutableList(pagingModel.data.size) { index -> index.toLong() }
 
         // Given
+        coEvery { remoteDataSource.getContacts() } returns pagingModel
+        coEvery { localDataSource.saveContacts(pagingModel.data) } returns affectedIds
         coEvery { remoteDataSource.getContacts() } returns pagingModel
 
         // When & Assertions
@@ -121,6 +124,85 @@ class ContactsRepositoryImpTest {
 
         // Then
         coVerify { remoteDataSource.getContacts() }
+    }
+
+    @Test
+    fun `test get favorite contact from local `() = runTest {
+
+        val pagingModel = TestDataGenerator.generateContacts()
+
+        // Given
+        coEvery { localDataSource.getFavoriteContacts() } returns pagingModel
+
+        // When & Assertions
+        val flow = contactsRepository.getFavoriteContacts(1)
+        flow.test {
+            // Expect Offer Items
+            val expected = expectItem()
+            Truth.assertThat(expected)
+                .isEqualTo(
+                    PagingModel(
+                        contactsMapper.fromList(pagingModel.data),
+                        total = 6,
+                        currentPage = 1
+                    )
+                )
+            expectComplete()
+        }
+
+        // Then
+        coVerify { localDataSource.getFavoriteContacts() }
+
+    }
+
+    @Test(expected = Exception::class)
+    fun `test get error when get favorite contacts fail`() = runTest {
+
+        // Given
+        coEvery { localDataSource.getFavoriteContacts() } throws Exception()
+
+        // When & Assertions
+        val flow = contactsRepository.getFavoriteContacts(1)
+        flow.test {
+            // Expect Error
+            throw expectError()
+        }
+
+        // Then
+        coVerify { localDataSource.getFavoriteContacts() }
+    }
+
+    @Test
+    fun `test save favorite contact success `() = runTest {
+
+        val favoriteContact = TestDataGenerator.generateContacts().data[0]
+
+        // Given
+        coEvery { localDataSource.addFavoriteContacts(any()) } returns 1
+
+        // When & Assertions
+        val result = contactsRepository.saveFavoriteContact(contactsMapper.from(favoriteContact))
+        Truth.assertThat(result).isEqualTo(1)
+
+
+        // Then
+        coVerify { localDataSource.addFavoriteContacts(any()) }
+
+    }
+
+    @Test(expected = Exception::class)
+    fun `test save favorite contact fail`() = runTest {
+        val favoriteContact = TestDataGenerator.generateContacts().data[0]
+
+        // Given
+        coEvery { localDataSource.addFavoriteContacts(any()) } throws Exception()
+
+        // When & Assertions
+        val result = contactsRepository.saveFavoriteContact(contactsMapper.from(favoriteContact))
+        Truth.assertThat(result).isEqualTo(0)
+
+        // Then
+        coVerify { localDataSource.addFavoriteContacts(any()) }
     }
 
 }
